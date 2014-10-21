@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/common_files"
+require_relative "../lib/game"
+require 'trollop'
+
+opts = Trollop::options do
+  opt :after, "Date since which you want to get commits, in yyyy-mm-dd format", :default => "0-1-1"
+  opt :file_count, "Number of files to play the game with; smaller numbers are easier", :default => 10
+end
+
+cf = CommonFiles.new(opts[:after], opts[:file_count]).files
+Game.new(cf).play
+
