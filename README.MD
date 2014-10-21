@@ -7,6 +7,7 @@ Note: This does not actually work yet
 git clone ...
 bundle install
 bin/go # for demo
+bin/go -h # for help
 bin/go -r path_to_my_codebase
 ```
 
