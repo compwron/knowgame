@@ -8,8 +8,9 @@ opts = Trollop::options do
   opt :root, "Folder in which .git folder is", :default => "."
   opt :after, "Date since which you want to get commits, in yyyy-mm-dd format", :default => "0-1-1"
   opt :file_count, "Number of files to play the game with; smaller numbers are easier", :default => 10
+  opt :tries, "Numer of tries at identifying a line", :default => 5
 end
 
 cf = CommonFiles.new(opts[:root], opts[:after], opts[:file_count]).files
-Game.new(cf).play
+Game.new(cf, opts[:tries]).play
 
