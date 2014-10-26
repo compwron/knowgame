@@ -10,33 +10,36 @@ class Game
 
 		keep_going = true
 		while keep_going 
-			file = @common_files.sample
-			line = random_line(file)
+			filename = @common_files.sample
+			line = random_line(filename)
 			puts "line is: #{line}"
 			puts "What file is this line from?"
-			current = gets.chomp
-			case current
-			when "done"
-				keep_going = false
-			when "next"
-				next
-			else
-				if current == file
-					puts "Correct!"
-					@record_keeper[:correct] += 1
-				else
-					@tries.downto(0).each { |try|
-						puts "Try #{try}"
-						current = gets.chomp
-						@record_keeper[:correct] += 1 if current == file
-					}
-					puts "Out of tries..."
-				end
-			end
+			guess(filename, @tries)
+			print_end_report
 		end
-		print_end_report
 	end
 
+	def guess(filename, remaining_tries)
+		if remaining_tries < 0
+			puts "out of chances"
+			return
+		end
+		current = gets.chomp
+		case current
+		when "done"
+			keep_going = false
+		when "next"
+			nil
+		else
+			if current == filename
+				puts "Correct!"
+				@record_keeper[:correct] += 1
+			else
+				puts "You are wrong. Remaining tries: #{remaining_tries}"
+				guess(filename, remaining_tries - 1)
+			end
+		end
+	end
 
 	def random_line filename
 		File.readlines(filename).sample
