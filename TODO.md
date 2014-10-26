@@ -1,0 +1,1 @@
+Fix empty test coverage = 42%
