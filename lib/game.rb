@@ -21,7 +21,7 @@ class Game
 
 	def guess(filename, remaining_tries)
 		if remaining_tries < 0
-			puts "out of chances"
+			puts "out of chances. File was: #{filename}"
 			return
 		end
 		current = gets.chomp
