@@ -14,22 +14,24 @@ class Game
 			line = random_line(filename)
 			puts "line is: #{line}"
 			puts "What file is this line from?"
-			guess(filename, @tries)
+			keep_going = guess(filename, @tries)
 			print_end_report
 		end
 	end
 
 	def guess(filename, remaining_tries)
 		if remaining_tries < 0
-			puts "out of chances. File was: #{filename}"
+			mercy filename
 			return
 		end
 		current = gets.chomp
 		case current
 		when "done"
-			keep_going = false
+			mercy filename
+			false
 		when "next"
-			nil
+			mercy filename
+			true
 		else
 			if current == filename
 				puts "Correct!"
@@ -45,6 +47,10 @@ class Game
 		File.readlines(filename).sample
 	end
 
+	def mercy filename
+		puts "out of chances. File was: #{filename}"
+	end
+
 	def print_instructions
 		puts "Type 'done' to end game
 		To win the round, guess the filename which contains the line
@@ -52,6 +58,6 @@ class Game
 	end
 
 	def print_end_report
-		"Game score: #{@record_keeper}"
+		puts "Game score: #{@record_keeper}"
 	end
 end
