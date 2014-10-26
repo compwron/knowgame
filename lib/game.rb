@@ -6,31 +6,31 @@ class Game
 	end
 
 	def play
-		print_instructions
+		_print_instructions
 
 		keep_going = true
 		while keep_going 
 			filename = @common_files.sample
-			line = random_line(filename)
+			line = _random_line(filename)
 			puts "line is: #{line}"
 			puts "What file is this line from?"
-			keep_going = guess(filename, @tries)
-			print_end_report
+			keep_going = _guess(filename, @tries)
+			_print_end_report
 		end
 	end
 
-	def guess(filename, remaining_tries)
+	def _guess(filename, remaining_tries)
 		if remaining_tries < 0
-			mercy filename
+			_mercy filename
 			return
 		end
 		current = gets.chomp
 		case current
 		when "done"
-			mercy filename
+			_mercy filename
 			false
 		when "next"
-			mercy filename
+			_mercy filename
 			true
 		else
 			if current == filename
@@ -38,26 +38,26 @@ class Game
 				@record_keeper[:correct] += 1
 			else
 				puts "You are wrong. Remaining tries: #{remaining_tries}"
-				guess(filename, remaining_tries - 1)
+				_guess(filename, remaining_tries - 1)
 			end
 		end
 	end
 
-	def random_line filename
+	def _random_line filename
 		File.readlines(filename).sample
 	end
 
-	def mercy filename
+	def _mercy filename
 		puts "out of chances. File was: #{filename}"
 	end
 
-	def print_instructions
+	def _print_instructions
 		puts "Type 'done' to end game
 		To win the round, guess the filename which contains the line
 		To give up and get new data, type 'next'"
 	end
 
-	def print_end_report
+	def _print_end_report
 		puts "Game score: #{@record_keeper}"
 	end
 end
