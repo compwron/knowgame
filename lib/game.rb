@@ -44,7 +44,8 @@ class Game
 	end
 
 	def _random_line filename
-		File.readlines(filename).sample
+		s = File.readlines(filename).sample
+		(s.empty? || s.strip == 'end') ? _random_line : s
 	end
 
 	def _mercy filename
