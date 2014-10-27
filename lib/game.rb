@@ -1,3 +1,4 @@
+require_relative 'combo'
 class Game
   def initialize(common_files, tries)
     @common_files = common_files
