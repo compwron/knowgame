@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/compwron/knowgame/badges/gpa.svg)](https://codeclimate.com/github/compwron/knowgame)
+[![Test Coverage](https://codeclimate.com/github/compwron/knowgame/badges/coverage.svg)](https://codeclimate.com/github/compwron/knowgame)
 [![Build Status](https://travis-ci.org/compwron/knowgame.svg)](https://travis-ci.org/compwron/knowgame)
 
 A commandline game for developers to play against their own codebase
