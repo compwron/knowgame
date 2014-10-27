@@ -10,11 +10,12 @@ Basic idea: Pick a line from the most X% often updated files. Try to identify th
 
 
 ````
-git clone ...
+git clone https://github.com/compwron/knowgame.git
+cd knowgame
 bundle install
-bin/go # for demo
-bin/go -h # for help
-bin/go -r path_to_my_codebase
+bin/knowgame # for demo
+bin/knowgame -h # for help
+bin/knowgame -r path_to_my_codebase
 ```
 
 ````
