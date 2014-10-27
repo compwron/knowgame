@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/compwron/knowgame/badges/gpa.svg)](https://codeclimate.com/github/compwron/knowgame)
+[![Build Status](https://travis-ci.org/compwron/knowgame.svg)](https://travis-ci.org/compwron/knowgame)
+
 A commandline game for developers to play against their own codebase
 Basic idea: Pick a line from the most X% often updated files. Try to identify the file that contains the line. If you fail, show options for filename. If fail, show more lines.
 
