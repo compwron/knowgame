@@ -4,10 +4,10 @@
 [![Dependency Status](https://gemnasium.com/compwron/knowgame.png)](https://gemnasium.com/compwron/knowgame)
 
 
-A commandline game for developers to play against their own codebase
+A commandline game for developers to play against their own codebase.
+
 Basic idea: Pick a line from the most X% often updated files. Try to identify the file that contains the line. If you fail, show options for filename. If fail, show more lines.
 
-Note: This does not actually work yet
 
 ````
 git clone ...

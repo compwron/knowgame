@@ -25,7 +25,7 @@ class Game
 	def _guess(filename, remaining_tries, combo)
 		if remaining_tries < 0
 			_mercy filename
-			return
+			return true
 		end
 		current = gets.chomp
 		case current
