@@ -3,11 +3,9 @@ require_relative 'report'
 require_relative 'round'
 
 class Game
-  attr_accessor :record_keeper
   def initialize(common_files, tries)
     @common_files = common_files
     @tries = tries
-    @record_keeper = { correct: 0, guesses: 0 }
     @report = Report.new
   end
 
@@ -31,26 +29,21 @@ class Game
   def _guess(round, combo)
     filename = round.filename
     if round.next_round?
-      _mercy filename
       round = new Round(round.filename, round.remaining_tries)
       return true
     end
     current = gets.chomp
 
     round.guess current
-
     if round.game_over?
       _record filename, false
-      _mercy filename
       false
     elsif round.next_round?
       _record filename, false
-      _mercy filename
       true
     elsif round.correct?
       _record filename, true
       puts 'Correct!'
-      @record_keeper[:correct] += 1
     else
       _record round.filename, false
       puts "You are wrong. Remaining tries: #{round.remaining_tries}"
@@ -70,10 +63,6 @@ class Game
 
   def _random_line(lines)
     Combo.new(lines)
-  end
-
-  def _mercy(filename)
-    puts "File was: #{filename}"
   end
 
   def _print_instructions

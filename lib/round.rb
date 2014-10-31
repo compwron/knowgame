@@ -25,14 +25,20 @@ class Round
   end
 
   def next_round?
+    _mercy filename
     @next_round
   end
 
   def game_over?
+    _mercy filename
     @game_over
   end
 
   def correct?
     @correct
+  end
+
+  def _mercy filename
+    puts "File was: #{filename}"
   end
 end

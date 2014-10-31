@@ -23,6 +23,8 @@ Options:
         --root, -r <s>:   Folder in which .git folder is (default: .)
        --after, -a <s>:   Date since which you want to get commits, in yyyy-mm-dd format (default: 0-1-1)
   --file-count, -f <i>:   Number of files to play the game with; smaller numbers are easier (default: 10)
+       --tries, -t <i>:   Numer of tries at identifying a line (default: 5)
+      --report, -e <s>:   File name/path of report (default: knowgame_report.txt)
             --help, -h:   Show this message
 ````
 
