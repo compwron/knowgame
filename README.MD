@@ -25,3 +25,10 @@ Options:
   --file-count, -f <i>:   Number of files to play the game with; smaller numbers are easier (default: 10)
             --help, -h:   Show this message
 ````
+
+
+````
+export GEMNASIUM_TESTSUITE="bundle exec rake"
+export GEMNASIUM_PROJECT_SLUG="compwron/knowgame"
+gemnasium --token 22aeed0ba11d9ec037fc1840004f6716 autoupdate
+````
