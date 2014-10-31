@@ -24,7 +24,7 @@ class Game
     end
   end
 
-  def _lines_from filename
+  def _lines_from(filename)
     File.readlines filename
   end
 

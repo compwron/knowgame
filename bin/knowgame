@@ -9,9 +9,18 @@ opts = Trollop.options do
   opt :after, 'Date since which you want to get commits, in yyyy-mm-dd format', default: '0-1-1'
   opt :file_count, 'Number of files to play the game with; smaller numbers are easier', default: 10
   opt :tries, 'Numer of tries at identifying a line', default: 5
+  opt :report, 'File name/path of report', default: 'knowgame_report.txt'
 end
 
 cf = CommonFiles.new(opts[:root], opts[:after], opts[:file_count]).files
 g = Game.new(cf, opts[:tries])
 g.play
-puts g.summary
+s = g.summary
+puts s
+
+open(opts[:report], 'a') do |f|
+  f.puts "Game played at: #{Time.now}"
+  f.puts s
+  f.puts "\n"
+end
+puts 'Wrote game results to file'
