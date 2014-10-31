@@ -1,5 +1,7 @@
 require_relative 'combo'
 require_relative 'report'
+require_relative 'round'
+
 
 class Game
   attr_accessor :record_keeper
@@ -19,39 +21,39 @@ class Game
       combo = _random_line(File.readlines(filename))
       puts "\nLine is: #{combo.line}"
       puts 'What file is this line from?'
-      keep_going = _guess(filename, @tries, combo)
+      keep_going = _guess(Round.new(filename, @tries), combo)
     end
   end
 
-  def _guess(filename, remaining_tries, combo)
-    #  maybe introduce the concept of a round?
-
-    if remaining_tries < 0
+  def _guess(round, combo)
+    filename = round.filename
+    if round.next_round?
       _mercy filename
+      round = new Round(round.filename, round.remaining_tries)
       return true
     end
     current = gets.chomp
-    case current
-    when 'done'
+
+    round.guess current
+
+    if round.game_over?
       _record filename, false
       _mercy filename
       false
-    when 'next'
+    elsif round.next_round?
       _record filename, false
       _mercy filename
       true
+    elsif round.correct?
+      _record filename, true
+      puts 'Correct!'
+      @record_keeper[:correct] += 1
     else
-      if current == filename
-        _record filename, true
-        puts 'Correct!'
-        @record_keeper[:correct] += 1
-      else
-        _record filename, false
-        puts "You are wrong. Remaining tries: #{remaining_tries}"
-        puts 'expanded context:\n'
-        puts _expanded_context(combo)
-        _guess(filename, remaining_tries - 1, combo)
-      end
+      _record round.filename, false
+      puts "You are wrong. Remaining tries: #{round.remaining_tries}"
+      puts 'expanded context:\n'
+      puts _expanded_context(combo)
+      _guess(Round.new(round.filename, round.remaining_tries - 1), combo)
     end
   end
 
