@@ -15,7 +15,7 @@ class Combo
 
   def surrounding_lines
     [@lines[line_num - 1],
-    @lines[line_num],
-    @lines[line_num + 1]]
+     @lines[line_num],
+     @lines[line_num + 1]]
   end
 end

@@ -38,7 +38,7 @@ class Round
     @correct
   end
 
-  def _mercy filename
+  def _mercy(filename)
     puts "File was: #{filename}"
   end
 end
