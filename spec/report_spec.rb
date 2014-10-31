@@ -7,7 +7,9 @@ describe Report do
     expect(r.summary).to eq("Files guessed at: 0
 Files:
 
+
 Correct guesses: 0
+
 ")
   end
 
@@ -23,12 +25,13 @@ foo.txt
   end
 
   it 'summary includes failed guesses' do
-    r.guessed 'foo.txt', true
+    r.guessed 'foo.txt', false
     expect(r.summary).to eq("Files guessed at: 1
 Files:
 foo.txt
 
 Correct guesses: 0
+
 ")
   end
 
@@ -36,7 +39,7 @@ Correct guesses: 0
     r.guessed 'foo.txt', true
     r.guessed 'bar.txt', false
 
-    expect(r.summary).to eq("Files guessed at: 1
+    expect(r.summary).to eq("Files guessed at: 2
 Files:
 foo.txt
 bar.txt
