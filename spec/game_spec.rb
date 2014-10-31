@@ -15,5 +15,15 @@ describe Game do
     end
   end
 
-  describe '#_game'
+  # TODO regexx match instead of full match for filename
+
+  describe '#summary' do
+    # somehow test that guessing increments guesses
+    it 'should return summary of played game with no wins' do
+      g = Game.new(['file1.txt', 'file2.txt'], 5)
+      # How should this actually work / be tested?
+      g.record_keeper = { correct: 0, guesses: 0 }
+      expect(g.summary).to eq("Files guessed at: 0\nFiles:\n\nCorrect guesses: 0\n")
+    end
+  end
 end

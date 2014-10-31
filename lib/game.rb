@@ -1,5 +1,6 @@
 require_relative 'combo'
 class Game
+  attr_accessor :record_keeper
   def initialize(common_files, tries)
     @common_files = common_files
     @tries = tries
@@ -21,6 +22,8 @@ class Game
   end
 
   def _guess(filename, remaining_tries, combo)
+    #  maybe introduce the concept of a round?
+
     if remaining_tries < 0
       _mercy filename
       return true
@@ -66,5 +69,9 @@ class Game
 
   def _print_end_report
     puts "Game score: #{@record_keeper}"
+  end
+
+  def summary
+    report.summary
   end
 end

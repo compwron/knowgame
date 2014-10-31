@@ -12,4 +12,6 @@ opts = Trollop.options do
 end
 
 cf = CommonFiles.new(opts[:root], opts[:after], opts[:file_count]).files
-Game.new(cf, opts[:tries]).play
+g = Game.new(cf, opts[:tries])
+g.play
+puts g.summary
