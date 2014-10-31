@@ -17,11 +17,15 @@ class Game
     keep_going = true
     while keep_going
       filename = @common_files.sample
-      combo = _random_line(File.readlines(filename))
+      combo = _random_line(_lines_from filename)
       puts "\nLine is: #{combo.line}"
       puts 'What file is this line from?'
       keep_going = _guess(Round.new(filename, @tries), combo)
     end
+  end
+
+  def _lines_from filename
+    File.readlines filename
   end
 
   def _guess(round, combo)

@@ -1,29 +1,14 @@
 require_relative 'spec_helper'
 
 describe Game do
-  describe '#play' do
-    xit "should end game with 'done'" do
-      g = Game.new(['file1.txt', 'file2.txt'], 5)
+  let(:g) { Game.new ['foo.txt', 'bar.txt'], 2 }
 
-      # allow(g).to receive(:gets).and_return('done')
-      # allow(g).to receive(:_random_line).and_return('a')
-      g.stub(:gets).and_return('done')
-      g.stub(:_random_line).and_return('a')
+  it 'ends game' do
+    g.stub(:gets).and_return('done')
+    g.stub(:_lines_from).and_return(['a'])
+    g.play
 
-      # expect { g.play }.to output(/.*Game score: {:correct=>0, :guesses=>0}/).to_stdout
-      g.play
-    end
-  end
-
-  # TODO regexx match instead of full match for filename
-
-  describe '#summary' do
-    # somehow test that guessing increments guesses
-    it 'should return summary of played game with no wins' do
-      g = Game.new(['file1.txt', 'file2.txt'], 5)
-      # How should this actually work / be tested?
-      g.record_keeper = { correct: 0, guesses: 0 }
-      expect(g.summary).to eq("Files guessed at: 0\nFiles:\n\nCorrect guesses: 0\n")
-    end
+    expect(g.summary).to include("Files guessed at: 1\nFiles:\n")
+    expect(g.summary).to include("\n\nCorrect guesses: 0\n\n")
   end
 end
