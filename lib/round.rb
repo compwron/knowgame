@@ -1,4 +1,7 @@
 class Round
+	NEXT = 'next'
+	DONE = 'done'
+
   def initialize(filename, remaining_tries)
     @filename = filename
     @remaining_tries = remaining_tries
@@ -8,19 +11,12 @@ class Round
   end
 
   def guess guessed_filename
-  	if @filename == guessed_filename then
-  		@correct = @next_round = true
-  	else
-  		@wrong_guesses += 1
-  	end
+  	correct = @filename == guessed_filename 
+  	correct ? @correct = @next_round = true : @wrong_guesses += 1
 
-  	if @wrong_guesses == @remaining_tries then
-  		@next_round = true
-  	end
+  	@next_round = true if (guessed_filename == NEXT || @wrong_guesses == @remaining_tries)
 
-  	@next_round = true if guessed_filename == 'next'
-
-  	if guessed_filename == 'done' then
+  	if guessed_filename == DONE then
   	 	@game_over = true
   	 	@next_round = false
   	 end
