@@ -21,4 +21,10 @@ describe Combo do
     c = Combo.new(lines)
     expect(c.line).to eq 'a'
   end
+
+  it "should show surrounding lines" do
+    lines = %w(a b c)
+    c = Combo.new(lines)
+    expect(c.surrounding_lines).to include('a')
+  end
 end
