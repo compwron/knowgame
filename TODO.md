@@ -7,3 +7,5 @@ bug: when it tries to get a line from a recently modified but currently deleted 
 using -root option is broken because filepaths
 
 still doing blank lines???
+
+append report to file with timestamp?
