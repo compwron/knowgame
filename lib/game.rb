@@ -2,7 +2,6 @@ require_relative 'combo'
 require_relative 'report'
 require_relative 'round'
 
-
 class Game
   attr_accessor :record_keeper
   def initialize(common_files, tries)
